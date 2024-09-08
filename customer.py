@@ -1,6 +1,3 @@
-from coffee import Coffee
-from order import Order
-
 class Customer:
     all = []
     def __init__(self, name):
@@ -21,9 +18,11 @@ class Customer:
         return self._orders
     
     def coffees(self):
+        from coffee import Coffee
         return list({order.coffee for order in self._orders if isinstance(order.coffee, Coffee)})
     
     def create_order(self, coffee, price):
+        from order import Order
         order = Order(self, coffee, price)
         self._orders.append(order)
         coffee.orders().append(order)
@@ -31,6 +30,7 @@ class Customer:
     
     @classmethod
     def most_aficionado(cls, coffee):
+        from order import Order
         customer_spending = {}
         for order in Order.all:
             if order.coffee == coffee:

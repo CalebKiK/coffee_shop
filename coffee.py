@@ -1,5 +1,3 @@
-from customer import Customer
-
 class Coffee:
     def __init__(self, name):
         self.name = name
@@ -20,6 +18,7 @@ class Coffee:
         return self._orders
     
     def customers(self):
+        from customer import Customer
         return list({order.customer for order in self._orders if isinstance(order.customer, Customer)})
     
     def num_orders(self):
