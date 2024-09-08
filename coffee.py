@@ -1,3 +1,5 @@
+from customer import Customer
+
 class Coffee:
     def __init__(self, name):
         self.name = name
@@ -14,15 +16,15 @@ class Coffee:
         if len(value) < 3:
             raise ValueError("Customer name should be at least 3 characters long.")
         self._name = value
-    # def orders(self):
-    #     return self._orders
+    def orders(self):
+        return self._orders
     
-    # def customers(self):
-    #     return list({order.customer for order in self._orders if isinstance(order.customer, Customer)})
+    def customers(self):
+        return list({order.customer for order in self._orders if isinstance(order.customer, Customer)})
     
-    # def num_orders(self):
-    #     return len(self._orders)
+    def num_orders(self):
+        return len(self._orders)
     
-    # def average_price(self):
-    #     total_price = sum(order.price for order in self._orders)
-    #     return total_price / len(self._orders)
+    def average_price(self):
+        total_price = sum(order.price for order in self._orders)
+        return total_price / len(self._orders)
