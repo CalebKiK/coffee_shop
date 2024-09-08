@@ -1,18 +1,14 @@
+"""Order class"""
 class Order:
     all = []
     def __init__(self, customer, coffee, price):
-        from customer import Customer 
-        from coffee import Coffee
-        if not isinstance(customer, Customer):
-            raise TypeError("Customer should be an instance of Customer class.")
-        if not isinstance(coffee, Coffee):
-            raise TypeError("Coffee should be an instance of Coffee class.")
-        self._customer = customer
-        self._coffee = coffee
-        self._price = price
-        coffee._orders.append(self)
-        customer._orders.append(self)
+        """Initialize an instance of order class"""
+        self.customer = customer
+        self.coffee = coffee
+        self.price = price
         Order.all.append(self)
+
+    """price property"""
     @property
     def price(self):
         return self._price
@@ -25,9 +21,25 @@ class Order:
         if hasattr(self, '_price'):
             raise AttributeError("Cannot change after the order is instantiated.")
         self._price = value
+
+    """customer property"""
     @property
     def customer(self):
         return self._customer
+    @customer.setter
+    def customer(self, customer):
+        from customer import Customer 
+        if not isinstance(customer, Customer):
+            raise TypeError("Customer should be an instance of Customer class.")
+        self._customer = customer
+
+    """coffee property"""
     @property
     def coffee(self):
         return self._coffee
+    @coffee.setter
+    def coffee(self, coffee):
+        from coffee import Coffee
+        if not isinstance(coffee, Coffee):
+            raise TypeError("Coffee should be an instance of Coffee class.")
+        self._coffee = coffee
